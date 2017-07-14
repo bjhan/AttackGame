@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%;width: 100%">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="target-densitydpi=device-dpi,width=device-width,initial-scale=1,user-scalable=no" />
+    <title>简单游戏</title>
+    <style type="text/css">
+        html,body{
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            -webkit-tap-highlight-color:rgba(255,255,255,0);
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select:none;
+            -webkit-appearance:none;
+        }
+        #attack{
+            position:absolute;
+            bottom: 10%;
+            width: 20%;
+            height: 10%;
+            right: 10%;
+            color: #e0e1e5;
+            font-size: 25px;
+            border-radius:5px 0;
+            background-image: url(./img/background.png);
+        }
+        #heroup{
+            position: absolute;
+            bottom: 25%;
+            width: 17%;
+            height: 8%;
+            left: 15%;
+            color: #e0e1e5;
+            font-size: 25px;
+            border-radius:5px 0;
+            background-image: url(./img/background.png);
+        }
+        #herodown{
+            position: absolute;
+            bottom: 5%;
+            width: 17%;
+            height: 8%;
+            left: 15%;
+            color: #e0e1e5;
+            font-size: 25px;
+            border-radius:5px 0;
+            background-image: url(./img/background.png);
+        }
+        #heroleft{
+            position: absolute;
+            bottom: 15%;
+            width: 17%;
+            height: 8%;
+            left: 5%;
+            color: #e0e1e5;
+            font-size: 25px;
+            border-radius:5px 0;
+            background-image: url(./img/background.png);
+        }
+        #heroright{
+            position: absolute;
+            bottom: 15%;
+            width: 17%;
+            height: 8%;
+            left: 25%;
+            color: #e0e1e5;
+            font-size: 25px;
+            border-radius:5px 0;
+            background-image: url(./img/background.png);
+        }
+        #score{
+            position: absolute;
+            bottom: 25%;
+            width: 15%;
+            height: 8%;
+            left: 45%;
+            color: red;
+            font-size: 35px;
+            border-radius:5px 0;
+            background-image: url(./img/monster.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+            text-align: center;
+        }
+    </style>
+</head>
+<body style="width: 100%;height: 100%;margin:0px;">
+<canvas id="canvas" style="width: 100%;"></canvas>
+<button id="attack" >射击</button>
+<div id="score"><span id="span" style="margin-top: 10px">0</span></div>
+<button id="heroup" >上</button>
+<button id="herodown" >下</button>
+<button id="heroleft" >左</button>
+<button id="heroright" >有</button>
+<script src="js/game.js"></script>
+</body>
+</html>
