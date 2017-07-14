@@ -31,7 +31,7 @@
     }
     var enemypostion = {
         x: 229,
-        y: 59,
+        y: 0,
         dir:0
     }
     var bgimg = new Image();//背景图片
@@ -45,6 +45,7 @@
     heroimg.onload = function(){
         touchfun();//监听触屏，实现上下左右
         bullet();//画子弹
+        makeEnemys();//添加敌人
         context.drawImage(heroimg,heropostion.x,heropostion.y,32,32);
     }
 
@@ -55,6 +56,7 @@
         enemys.push(ene);
     }
 
+
     document.onkeydown=keyevent;//监听上下左右按键
 
     document.getElementById('attack').onclick = function(){
@@ -62,6 +64,14 @@
         bulls.push(dat);
     }
 
+    var enemytimer;
+    function makeEnemys(){
+        enemytimer = setInterval(function(){
+            var x = Math.round(Math.random()*460);
+            var ene = new enemy(x,0,1);
+            enemys.push(ene);
+        },2000);
+    }
     function drawEnemys(){
         for(var i=0;i<enemys.length;i++){
             if(enemys[i].life == 1){//活着
