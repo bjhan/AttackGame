@@ -64,13 +64,16 @@
         bulls.push(dat);
     }
 
+    document.getElementById('rebegin').onclick = function(){
+        makeEnemys();
+    }
     var enemytimer;
     function makeEnemys(){
         enemytimer = setInterval(function(){
             var x = Math.round(Math.random()*460);
             var ene = new enemy(x,0,1);
             enemys.push(ene);
-        },2000);
+        },3000);
     }
     function drawEnemys(){
         for(var i=0;i<enemys.length;i++){
@@ -131,17 +134,20 @@
 
 
     var timer;
+    var biaoji = 0;
     function bullet(){
-        timer = setInterval(function(){
+        //timer = setInterval(function(){
             context.clearRect(0,0,canvas.width,canvas.height);
             context.drawImage(bgimg,0,0,canvas.width,canvas.height);
             context.drawImage(heroimg,heropostion.x,heropostion.y,32,32);
 
             drawEnemys();//画出敌人
 
-            if(gameover == 1){
+            if(gameover == 1 && biaoji == 0){
+                biaoji = 1;
                 alert('游戏结束，共射杀了'+killenemy+'个敌人');
-                clearInterval(timer);
+                enemys = [];
+                clearInterval(enemytimer);
             }
             for(var i=0;i<bulls.length;i++){
                 if(bulls[i].dir!=0){
@@ -162,9 +168,9 @@
                     }
                 }
             }
-        },10);
+        //},10);
 
-        //timer = requestAnimationFrame(bullet);
+        timer = requestAnimationFrame(bullet);
 
     }
 
