@@ -66,7 +66,7 @@
         for(var i=0;i<enemys.length;i++){
             if(enemys[i].life == 1){//活着
                 enemys[i].y = enemys[i].y + 0.5;
-                if(enemys[i].y > (canvas.height -15)){
+                if(enemys[i].y > canvas.height){
                     gameover = 1;
                 }
                 context.drawImage(enemyimg,enemys[i].x,enemys[i].y,30,32);
@@ -122,36 +122,39 @@
 
     var timer;
     function bullet(){
-        context.clearRect(0,0,canvas.width,canvas.height);
-        context.drawImage(bgimg,0,0,canvas.width,canvas.height);
-        context.drawImage(heroimg,heropostion.x,heropostion.y,32,32);
+        timer = setInterval(function(){
+            context.clearRect(0,0,canvas.width,canvas.height);
+            context.drawImage(bgimg,0,0,canvas.width,canvas.height);
+            context.drawImage(heroimg,heropostion.x,heropostion.y,32,32);
 
-        drawEnemys();//画出敌人
+            drawEnemys();//画出敌人
 
-        if(gameover == 1){
-            alert('游戏结束，共射杀了'+killenemy+'个敌人');
-            window.cancelAnimationFrame(timer);
-        }
-        for(var i=0;i<bulls.length;i++){
-            if(bulls[i].dir!=0){
-                context.beginPath();
-                context.fillStyle = 'red';
-                context.arc(bulls[i].x,bulls[i].y,3,0,2*Math.PI);
-                context.fill();
-                context.closePath();
+            if(gameover == 1){
+                alert('游戏结束，共射杀了'+killenemy+'个敌人');
+                clearInterval(timer);
+            }
+            for(var i=0;i<bulls.length;i++){
+                if(bulls[i].dir!=0){
+                    context.beginPath();
+                    context.fillStyle = 'red';
+                    context.arc(bulls[i].x,bulls[i].y,3,0,2*Math.PI);
+                    context.fill();
+                    context.closePath();
 
-                if(bulls[i].dir==1){
-                    if(bulls[i].y>canvas.height){
-                        bulls[i].dir = 0;
-                    }else {
-                        attackcheck(bulls[i].x,bulls[i].y);
-                        bulls[i].y = bulls[i].y - 2;
+                    if(bulls[i].dir==1){
+                        if(bulls[i].y>canvas.height){
+                            bulls[i].dir = 0;
+                        }else {
+                            attackcheck(bulls[i].x,bulls[i].y);
+                            bulls[i].y = bulls[i].y - 2;
+                        }
+
                     }
-
                 }
             }
-        }
-        timer = requestAnimationFrame(bullet);
+        },10);
+
+        //timer = requestAnimationFrame(bullet);
 
     }
 
